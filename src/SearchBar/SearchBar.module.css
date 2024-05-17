@@ -1,0 +1,43 @@
+.header {
+	background-color: #4651b0;
+	width: 100%;
+	padding: 10px 0;
+}
+
+.form {
+	margin: 0 auto;
+	width: fit-content;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+}
+
+.input {
+	height: 40px;
+	width: 250px;
+	background-color: #fff;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	color: #000;
+	font-size: 16px;
+	padding: 0;
+}
+
+.input:focus-visible {
+	outline: transparent;
+}
+
+.btn {
+	padding: 0 10px;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 5px 0 0 5px;
+	background-color: #fff;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	color: #6c6c6c;
+}

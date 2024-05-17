@@ -1,0 +1,15 @@
+.wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.btn {
+	cursor: pointer;
+	margin: 40px 0 100px;
+	font-size: 20px;
+	padding: 10px 30px;
+	/* height: 40px; */
+	background-color: #4651b0;
+	border: 1px solid #b6c300;
+	border-radius: 7px;
+}
