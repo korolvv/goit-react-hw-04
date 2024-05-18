@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
 
 function App() {
 	const [photos, setPhotos] = useState([]);
@@ -14,6 +15,11 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [page, setPage] = useState(1);
+	const [isOpen, setIsOpen] = useState(false);
+	const [modalPhoto, setModalPhoto] = useState({
+		url: "",
+		alt: "",
+	});
 
 	useEffect(() => {
 		if (searchQuery.trim() === "") {
@@ -50,14 +56,35 @@ function App() {
 		setPage(page + 1);
 	};
 
+	const handleOpenModal = ({ url, alt }) => {
+		setIsOpen(true);
+		setModalPhoto({ url, alt });
+		document.body.style.overflow = "hidden";
+	};
+
+	function handleCloseModal() {
+		setIsOpen(false);
+		setModalPhoto({ alt: "", url: "" });
+		document.body.style.overflow = "visible";
+	}
+
 	return (
 		<>
 			<SearchBar onSearch={handleSearch} onEmpty={handleIsEmpty} />
 			<Toaster position="top-right" />
 			{isError && <ErrorMessage />}
-			{photos.length > 0 && <ImageGallery data={photos} />}
+			{photos.length > 0 && (
+				<ImageGallery data={photos} isOpen={handleOpenModal} />
+			)}
 			{isLoading && <Loader />}
 			{photos.length > 0 && !isError && <LoadMoreBtn onClick={increasePage} />}
+			{isOpen && (
+				<ImageModal
+					baseUrl={modalPhoto}
+					isModalOpen={isOpen}
+					isModalClose={handleCloseModal}
+				/>
+			)}
 		</>
 	);
 }

@@ -13,10 +13,15 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 a {
 	font-weight: 500;
 	color: #646cff;
 	text-decoration: inherit;
+	cursor: pointer;
 }
 a:hover {
 	color: #535bf2;
@@ -44,4 +49,23 @@ img {
 	display: block;
 	width: 100%;
 	height: auto;
+}
+
+.ReactModal__Overlay {
+	opacity: 0;
+	transition: opacity 2000ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+	background-color: rgba(0, 0, 0, 0.7) !important;
+	opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+	opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+	border: none !important;
+	padding: 0 !important;
 }
