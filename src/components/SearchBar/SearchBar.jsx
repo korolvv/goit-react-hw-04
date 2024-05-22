@@ -1,18 +1,25 @@
 import { Field, Form, Formik } from "formik";
 import { IoIosSearch } from "react-icons/io";
+import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-export default function SearchBar({ onSearch, onEmpty }) {
+export default function SearchBar({ onSearch }) {
+	const handleIsEmpty = () => {
+		toast.error("Please, input your response!");
+	};
+
 	return (
 		<>
 			<header className={css.header}>
+				{<Toaster position="top-right" />}
 				<Formik
 					initialValues={{ value: "" }}
 					onSubmit={(values, actions) => {
-						onSearch(values.value);
 						if (values.value === "") {
-							onEmpty();
+							handleIsEmpty();
+							return;
 						}
+						onSearch(values.value);
 						actions.resetForm();
 					}}>
 					<Form className={css.form}>

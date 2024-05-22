@@ -3,7 +3,6 @@ import "./App.css";
 import { getPhotos } from "../image-api";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
-import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
@@ -48,10 +47,6 @@ function App() {
 		setPhotos([]);
 	};
 
-	const handleIsEmpty = () => {
-		toast.error("Please, input your response!");
-	};
-
 	const increasePage = () => {
 		setPage(page + 1);
 	};
@@ -70,11 +65,10 @@ function App() {
 
 	return (
 		<>
-			<SearchBar onSearch={handleSearch} onEmpty={handleIsEmpty} />
-			<Toaster position="top-right" />
+			<SearchBar onSearch={handleSearch} />
 			{isError && <ErrorMessage />}
 			{photos.length > 0 && (
-				<ImageGallery data={photos} isOpen={handleOpenModal} />
+				<ImageGallery data={photos} openModal={handleOpenModal} />
 			)}
 			{isLoading && <Loader />}
 			{photos.length > 0 && !isError && <LoadMoreBtn onClick={increasePage} />}

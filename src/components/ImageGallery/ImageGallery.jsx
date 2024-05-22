@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-export default function ImageGallery({ data, isOpen }) {
+export default function ImageGallery({ data, openModal }) {
 	return (
 		<>
 			<ul className={css.list}>
@@ -11,7 +11,7 @@ export default function ImageGallery({ data, isOpen }) {
 							<ImageCard
 								urls={item.urls}
 								alt={item.alt_description}
-								getUrl={isOpen}
+								getUrl={openModal}
 								likes={item.likes}
 								user={item.user.name}
 							/>
